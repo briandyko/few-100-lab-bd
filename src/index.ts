@@ -1,4 +1,4 @@
-import { billTotal, tipCalculation } from "../spec/utils";
+import { billTotal, formatter, tipCalculation } from "../spec/utils";
 import './styles.css';
 console.log('Ready to Party');
 
@@ -12,4 +12,4 @@ const tipAmount:number = tipCalculation(billAmount, tipPercentage) //amount of t
 console.log(tipAmount)
 
 const grandTotalBill:number = billTotal(billAmount, tipAmount);
-console.log(grandTotalBill);
+console.log(formatter.format(grandTotalBill));

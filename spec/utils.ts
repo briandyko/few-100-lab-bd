@@ -6,3 +6,9 @@ export function tipCalculation(billAmount:number, tipSelection:number){
 export function billTotal(billAmount:number, tipAmount:number){
     return add(billAmount, tipAmount);
 }
+
+export const formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  });
+  
