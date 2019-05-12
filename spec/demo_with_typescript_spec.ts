@@ -1,4 +1,4 @@
-import { add, percentage } from "./utils";
+import { add, billTotal, tipCalculation } from "./utils";
 
 describe('writing specs in typescript', () => {
     it('is easy', () => {
@@ -10,9 +10,16 @@ describe('writing specs in typescript', () => {
 });
 
 describe('does what tips supposed to do', () =>{
-    it('calculates percentages', () => {
-        let base: number = 100;
-        let tipAmount: number = 20;
-        expect(percentage(100,20)).toBe(5);
+    it('caluculates amount of tip', () => {
+        const billAmount:number = 100;
+        const tipSelection:number = 20;
+        const tipAmount = tipCalculation(billAmount, tipSelection);
+        expect(tipAmount).toBe(20);
+    });
+    it('calculates Bill Total', () => {
+        const billAmount:number = 100;
+        const tipTotal:number = 20;
+        const total:number = billTotal(billAmount, tipTotal);
+        expect(total).toBe(120);
     });
 });
