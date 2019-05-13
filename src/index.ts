@@ -1,15 +1,15 @@
-import { billTotal, formatter, tipCalculation } from "../spec/utils";
+import { billTotal, formatPercentage, formatterUSD, tipCalculation } from "../spec/utils";
 import './styles.css';
 console.log('Ready to Party');
 
 const billAmount:number = 125; //input from User on form
-console.log(billAmount);
+console.log(formatterUSD.format(billAmount));
 
 const tipPercentage:number = 10;  //id of selected button
-console.log(tipPercentage);
+console.log(formatPercentage(tipPercentage));
 
 const tipAmount:number = tipCalculation(billAmount, tipPercentage) //amount of tip
-console.log(tipAmount)
+console.log(formatterUSD.format(tipAmount));
 
 const grandTotalBill:number = billTotal(billAmount, tipAmount);
-console.log(formatter.format(grandTotalBill));
+console.log(formatterUSD.format(grandTotalBill));
