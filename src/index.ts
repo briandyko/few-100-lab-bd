@@ -21,10 +21,10 @@ function tipTime(e: any) {
   if (tipString === 't10%') {
     let tippy: any = document.getElementById('t10');
     let unTippy: any = document.getElementById('t15');
-    let unTippy2: any = document.getElementById('t20');
+    let unTippyTwo: any = document.getElementById('t20');
     tippy.disabled = true;
     unTippy.disabled = false;
-    unTippy2.disabled = false;
+    unTippyTwo.disabled = false;
     tipstore = 10;
     document.getElementById("tipPercentage").innerHTML = `Amount of tip: ${(selection)}`;
     document.getElementById('tipInfo').innerHTML = `You are tipping: ${(selection)}`
@@ -77,8 +77,8 @@ function validateInput(val: any) {
 }
 
 function startMath(math: any) {
-  let now = document.getElementById('okay') as HTMLInputElement;
-  const amount = now.valueAsNumber;
+  let inputAmount = document.getElementById('okay') as HTMLInputElement;
+  const amount = inputAmount.valueAsNumber;
   let tipCalc = tipCalculation(amount, tipstore);
   document.getElementById("tipAmount").innerHTML = `Amount of tip: ${formatterUSD.format(tipCalc)}`;
   let bTotal = billTotal(amount, tipCalc);
