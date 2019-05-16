@@ -5,7 +5,7 @@ console.log('Ready to Party');
 let tipstore: number = 0;
 let bill = document.getElementById("okay");
 bill.addEventListener('input', displayBill);
-// bill.addEventListener('input', startMath)
+bill.addEventListener('input', startMath);
 
 document.querySelectorAll('.bunch button').forEach(b =>
   b.addEventListener('click', tipTime));
@@ -55,17 +55,30 @@ function tipTime(e: any) {
 }
 
 
-
 function displayBill(num: any) {
+  if (this.value < 0) {
+    let box = document.getElementById('okay');
+    box.addEventListener('blur', validateInput);
+  }
+
   let what: number = num.srcElement.value;
   document.getElementById("ba").innerHTML = `Bill Amount: ${formatterUSD.format(what)}`;
+}
+
+function validateInput(lala: any) {
+  let box = document.getElementById('okay');
+  box.innerHTML = '';
+  box.style.borderColor = 'red';
+  this.value = null;
+  // document.getElementById("ba").innerHTML = '';
+  // document.getElementById("tipPercentage").innerHTML = '';
+  // document.getElementById("tipAmount").innerHTML = '';
+  // document.getElementById("billTotal").innerHTML = '';
 }
 
 function startMath(math: any) {
   let now = document.getElementById('okay') as HTMLInputElement;
   const amount = now.valueAsNumber;
-
-
   let x = tipCalculation(amount, tipstore);
   document.getElementById("tipAmount").innerHTML = `Amount of tip: ${formatterUSD.format(x)}`;
   let z = billTotal(amount, x);
@@ -73,4 +86,3 @@ function startMath(math: any) {
 }
 
 
-//input-type numbers on the input thing...but will still allow negatives
