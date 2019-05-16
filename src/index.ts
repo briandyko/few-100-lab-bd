@@ -1,4 +1,4 @@
-import { billTotal, formatPercentage, formatterUSD, tipCalculation } from '../spec/utils';
+import { billTotal, formatterUSD, tipCalculation } from '../spec/utils';
 import './styles.css';
 console.log('Ready to Party');
 
@@ -15,7 +15,7 @@ function tipTime(e: any) {
   console.log(selection);
   let tipString = 't' + selection;
   console.log(tipString);
-  // let theAmountToTip = +this.dataset.amount;
+
   tipstore = +this.dataset.amount;
   console.log(tipstore);
   if (tipString === 't10%') {
@@ -56,33 +56,33 @@ function tipTime(e: any) {
 
 
 function displayBill(num: any) {
-  if (this.value < 0) {
+  if (isNaN(this.value) || this.value < 0) {
     let box = document.getElementById('okay');
     box.addEventListener('blur', validateInput);
   }
 
-  let what: number = num.srcElement.value;
-  document.getElementById("ba").innerHTML = `Bill Amount: ${formatterUSD.format(what)}`;
+  let bAmount: number = this.valueAsNumber;
+  document.getElementById("ba").innerHTML = `Bill Amount: ${formatterUSD.format(bAmount)}`;
 }
 
-function validateInput(lala: any) {
+function validateInput(val: any) {
   let box = document.getElementById('okay');
   box.innerHTML = '';
   box.style.borderColor = 'red';
   this.value = null;
-  // document.getElementById("ba").innerHTML = '';
-  // document.getElementById("tipPercentage").innerHTML = '';
-  // document.getElementById("tipAmount").innerHTML = '';
-  // document.getElementById("billTotal").innerHTML = '';
+  document.getElementById("ba").innerHTML = 'Bill Amount:';
+  document.getElementById("tipPercentage").innerHTML = 'Tip Percentage:';
+  document.getElementById("tipAmount").innerHTML = 'Amount of tip:';
+  document.getElementById("billTotal").innerHTML = 'Total to be Paid:';
 }
 
 function startMath(math: any) {
   let now = document.getElementById('okay') as HTMLInputElement;
   const amount = now.valueAsNumber;
-  let x = tipCalculation(amount, tipstore);
-  document.getElementById("tipAmount").innerHTML = `Amount of tip: ${formatterUSD.format(x)}`;
-  let z = billTotal(amount, x);
-  document.getElementById("billTotal").innerHTML = `Total to be Paid: ${formatterUSD.format(z)}`;
+  let tipCalc = tipCalculation(amount, tipstore);
+  document.getElementById("tipAmount").innerHTML = `Amount of tip: ${formatterUSD.format(tipCalc)}`;
+  let bTotal = billTotal(amount, tipCalc);
+  document.getElementById("billTotal").innerHTML = `Total to be Paid: ${formatterUSD.format(bTotal)}`;
 }
 
 
